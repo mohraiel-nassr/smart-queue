@@ -10,13 +10,16 @@ lerna-debug.log*
 # Node modules 
 node_modules/
 
+ usersbranch
 
+
+# Build outputs
+ main
 
 # Local environment files
 
 
 # Editor directories and files
-.vscode/*
 !.vscode/extensions.json
 .idea/
 .DS_Store
