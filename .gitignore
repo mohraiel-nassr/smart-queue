@@ -11,8 +11,6 @@ lerna-debug.log*
 node_modules/
 
 # Build outputs
-dist/
-
 
 
 # Editor directories and files
@@ -28,3 +26,4 @@ dist/
 
 # Lock files
 *.pid
+config.bat
