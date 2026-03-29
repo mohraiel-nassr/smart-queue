@@ -5,8 +5,11 @@ import ConnectDB from "./config/db.js";
 import usersRoutes from "./routes/users.route.js";
 import ticketRoutes from "./routes/ticket.route.js";
 import { errorHandler } from "./middlewares/globalError.js";
+import messageRoutes from "./routes/message.route.js";
+
 
 const app = express();
+
 dotenv.config();
 app.use(cors());
 app.use(express.json());
@@ -14,6 +17,7 @@ app.use(express.json());
 app.use("/users", usersRoutes);
 
 app.use("/tickets", ticketRoutes);
+app.use("/messages", messageRoutes);
 
 app.use(errorHandler);
 
