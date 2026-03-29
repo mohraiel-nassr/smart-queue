@@ -7,11 +7,17 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Node modules (frontend + backend)
+# Node modules 
 node_modules/
+
+ usersbranch
+
 
 # Build outputs
 .env
+ main
+
+# Local environment files
 
 
 # Editor directories and files
@@ -27,3 +33,4 @@ node_modules/
 
 # Lock files
 *.pid
+config.bat
