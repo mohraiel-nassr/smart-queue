@@ -10,7 +10,12 @@ lerna-debug.log*
 # Node modules 
 node_modules/
 
+ usersbranch
 
+
+# Build outputs
+.env
+ main
 
 # Local environment files
 

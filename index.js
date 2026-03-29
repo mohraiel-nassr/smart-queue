@@ -3,6 +3,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import ConnectDB from "./config/db.js";
 import usersRoutes from "./routes/users.route.js";
+ usersbranch
+
+import ticketRoutes from "./routes/" 
+ main
 import { errorHandler } from "./middlewares/globalError.js";
 import { createRequire } from 'module';
 
@@ -14,6 +18,10 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/users", usersRoutes);
+ usersbranch
+
+app.use("/tickets", ticketRoutes);
+ main
 
 app.use(errorHandler);
 
