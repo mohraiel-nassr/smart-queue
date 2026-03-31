@@ -19,6 +19,15 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.3.3",
-    "nodemon": "^3.1.14"
-  }
+    "nodemon": "^3.1.14",
+    "socket.io": "^4.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohraiel-nassr/smart-queue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mohraiel-nassr/smart-queue/issues"
+  },
+  "homepage": "https://github.com/mohraiel-nassr/smart-queue#readme"
 }
