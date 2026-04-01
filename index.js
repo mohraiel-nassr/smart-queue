@@ -5,16 +5,15 @@ import ConnectDB from "./config/db.js";
 import usersRoutes from "./routes/users.route.js";
 import ticketRoutes from "./routes/ticket.route.js";
 import { errorHandler } from "./middlewares/globalError.js";
-<<<<<<< Updated upstream
-
-const app = express();
-=======
 import messageRoutes from "./routes/message.route.js";
 import http from "http";
 import { Server } from "socket.io";
 import socketHandler from "./socket.js";
+import dns from "dns";
 
->>>>>>> Stashed changes
+// تغيير DNS إلى Google DNS
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
 dotenv.config();
 const app = express();
 const server = http.createServer(app);
@@ -32,7 +31,7 @@ app.use(express.static("chat"));
 app.use("/users", usersRoutes);
 
 app.use("/tickets", ticketRoutes);
-
+app.use("/messages", messageRoutes);
 app.use(errorHandler);
 
 ConnectDB();

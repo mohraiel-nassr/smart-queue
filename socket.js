@@ -8,26 +8,32 @@ const socketHandler = (io) => {
       socket.join(ticketId);
       console.log(`Socket ${socket.id} joined ${ticketId}`);
     });
-    try{
-        socket.on("sendMessage", async (data) => {
-      const { text, senderId, ticketId } = data;
 
-      const newMessage = await messageModel.create({
-        text,
-        senderId,
-        ticketId,
-      });
+    socket.on("sendMessage", async (data) => {
+      try {
+        const { text, senderId, ticketId } = data;
 
-      io.to(ticketId).emit("receiveMessage", newMessage);
+        if (!text || !senderId || !ticketId) {
+          return socket.emit("error", "Missing required data");
+        }
+
+        console.log("Incoming message:", data);
+
+        const newMessage = await messageModel.create({
+          text,
+          senderId,
+          ticketId,
+        });
+
+        io.to(ticketId).emit("receiveMessage", newMessage);
+
+      } catch (error) {
+        console.log("Socket Error:", error.message);
+      }
     });
 
-    } catch (error) {
-        console.log("Socket Error:", error.message);
-    }
-    
-
     socket.on("disconnect", () => {
-      console.log("User disconnected");
+      console.log("User disconnected:", socket.id);
     });
   });
 };
