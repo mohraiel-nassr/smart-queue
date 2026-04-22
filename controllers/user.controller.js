@@ -32,6 +32,14 @@ export const loginUsers = asyncHandler(async (req, res) => {
   }
   const token = generateTokken(user);
   const refreshToken = refreshTokken(user);
+
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 24 * 60 * 60 * 1000,
+  });
+
   res.status(200).json({
     message: "success",
     user: `Wellcome ${user.role} ${user.username}`,
@@ -63,4 +71,9 @@ export const getSingleUser = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "failed", error: "User not found" });
   }
   res.status(200).json({ messgae: "success", user });
+});
+
+export const logOutUser = asyncHandler(async (req, res) => {
+  res.clearCookie("token");
+  res.status(200).json({ message: "success", info: "Logged out successfully" });
 });

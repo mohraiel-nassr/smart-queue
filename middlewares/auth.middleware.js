@@ -2,13 +2,13 @@ import jwt from "jsonwebtoken";
 import userModel from "../models/user.model.js";
 
 export const isAuth = async (req, res, next) => {
-  const { authorization } = req.headers;
-  if (!authorization) {
+  const cookieToken = req.cookies.token;
+  if (!cookieToken) {
     return res
       .status(401)
       .json({ message: "Unauthorized - Should Login First" });
   }
-  const decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+  const decoded = jwt.verify(cookieToken, process.env.SECRET_KEY);
   if (!decoded) {
     return res.status(401).json({ message: "Invalid Token" });
   }
@@ -25,6 +25,15 @@ export const isAgent = async (req, res, next) => {
     return res
       .status(403)
       .json({ message: "Access denied - Agents only can do this" });
+  }
+  next();
+};
+
+export const isAdmin = async (req, res, next) => {
+  if (req.user.role != "admin") {
+    return res
+      .status(403)
+      .json({ message: "Access denied - Admins only can do this" });
   }
   next();
 };
