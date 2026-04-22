@@ -10,8 +10,7 @@ import http from "http";
 import { Server } from "socket.io";
 import socketHandler from "./socket.js";
 import dns from "dns";
-
-// تغيير DNS إلى Google DNS
+import cookieParser from "cookie-parser";
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 dotenv.config();
@@ -25,11 +24,11 @@ const io = new Server(server, {
 socketHandler(io);
 
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.static("chat"));
 
 app.use("/users", usersRoutes);
-
 app.use("/tickets", ticketRoutes);
 app.use("/messages", messageRoutes);
 
